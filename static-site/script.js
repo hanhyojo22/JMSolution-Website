@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!header) return;
   const topbar = document.querySelector('.jm-topbar');
   const onHero = header.classList.contains('jm-header-on-hero');
-  const hero = onHero ? document.querySelector('.jm-hero') : null;
+  const hero = onHero ? document.querySelector('.jm-hero, .jm-tb-hero') : null;
   const logoImg = header.querySelector('.jm-header-logo img');
 
   function updateHeaderScroll() {
@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
       header.classList.toggle('jm-hero-scrolling', !scrolled && window.scrollY > 0);
     }
     if (logoImg) {
-      logoImg.src = scrolled ? 'uploads/logoblue.png' : 'uploads/logo.png';
+      var unscrolledLogo = header.getAttribute('data-logo-unscrolled') || 'uploads/logo.webp';
+      logoImg.src = scrolled ? 'uploads/logoblue.webp' : unscrolledLogo;
     }
   }
 
@@ -427,6 +428,32 @@ document.addEventListener('DOMContentLoaded', function () {
           open(list, i);
         }
       });
+    });
+  });
+});
+
+// Click-to-load Facebook video embeds (team-building.html). Markup ships as
+// a real link to the video on Facebook (works with no JS); clicking swaps it
+// for the Facebook video plugin iframe instead of navigating away.
+document.addEventListener('DOMContentLoaded', function () {
+  const posters = document.querySelectorAll('.jm-tb-video-poster');
+  if (!posters.length) return;
+
+  posters.forEach(function (poster) {
+    poster.addEventListener('click', function (e) {
+      const videoUrl = poster.getAttribute('data-fb-video');
+      if (!videoUrl) return;
+      e.preventDefault();
+
+      const iframe = document.createElement('iframe');
+      iframe.className = 'jm-tb-video-frame';
+      iframe.src = 'https://www.facebook.com/plugins/video.php?href=' + encodeURIComponent(videoUrl) + '&show_text=false&autoplay=true';
+      iframe.title = poster.getAttribute('aria-label') || 'Facebook video';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.frameBorder = '0';
+
+      poster.replaceWith(iframe);
     });
   });
 });
