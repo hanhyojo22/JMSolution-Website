@@ -1,0 +1,318 @@
+:root{
+  --jm-font-sans:'Poppins',sans-serif;
+}
+
+html{font-family:var(--jm-font-sans);}
+body{font-family:var(--jm-font-sans);}
+button,input,textarea,select{font:inherit;}
+
+.type-topbar,
+.jm-topbar-inner{
+  font-size:13px;
+  font-weight:500;
+  line-height:1.5;
+}
+
+.type-nav{
+  font-size:clamp(13px,1.6vw,15px);
+  font-weight:600;
+  line-height:1.4;
+  letter-spacing:-0.01em;
+}
+
+.type-nav-mobile{
+  font-size:16px;
+  font-weight:600;
+  line-height:1.4;
+  letter-spacing:-0.01em;
+}
+
+.type-menu-link{
+  font-size:15px;
+  font-weight:500;
+  line-height:1.45;
+}
+
+.type-button-sm{
+  font-size:14.5px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+}
+
+.type-button,
+.jm-btn-primary,
+.jm-btn-secondary{
+  font-size:15.5px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+}
+
+.type-button-lg,
+.jm-btn-white{
+  font-size:16px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+}
+
+.type-link{
+  font-size:15px;
+  font-weight:700;
+  line-height:1.45;
+}
+
+.type-link-strong{
+  font-size:14.5px;
+  font-weight:700;
+  line-height:1.45;
+}
+
+.type-overline,
+.jm-eyebrow{
+  font-size:13.5px;
+  font-weight:700;
+  line-height:1.3;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.type-overline-sm{
+  font-size:11.5px;
+  font-weight:700;
+  line-height:1.3;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+}
+
+.type-badge,
+.jm-badge{
+  font-size:13px;
+  font-weight:700;
+  line-height:1.35;
+}
+
+.type-stat-chip,
+.jm-hero-stat{
+  font-size:13.5px;
+  font-weight:700;
+  line-height:1.4;
+}
+
+.type-breadcrumb,
+.jm-breadcrumb{
+  font-size:13px;
+  font-weight:600;
+  line-height:1.4;
+}
+
+.type-chip,
+.jm-hub-chip{
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1.4;
+}
+
+.type-display{
+  font-size:clamp(30px,5.5vw,52px);
+  font-weight:800;
+  line-height:1.12;
+  letter-spacing:-0.02em;
+}
+
+.type-page-title{
+  font-size:clamp(28px,5vw,44px);
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+}
+
+.type-page-title-sm{
+  font-size:clamp(26px,5vw,42px);
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+}
+
+.type-page-title-tight{
+  font-size:clamp(26px,5vw,40px);
+  font-weight:800;
+  line-height:1.24;
+  letter-spacing:-0.02em;
+}
+
+.type-section-title{
+  font-size:clamp(24px,4vw,34px);
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+}
+
+.type-section-title-tight{
+  font-size:clamp(24px,4vw,32px);
+  font-weight:800;
+  line-height:1.3;
+  letter-spacing:-0.02em;
+}
+
+.type-section-title-sm{
+  font-size:clamp(22px,3.6vw,30px);
+  font-weight:800;
+  line-height:1.25;
+  letter-spacing:-0.02em;
+}
+
+.type-section-title-fixed{
+  font-size:34px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+}
+
+.type-card-title{
+  font-size:19px;
+  font-weight:700;
+  line-height:1.35;
+}
+
+.type-card-title-lg{
+  font-size:22px;
+  font-weight:700;
+  line-height:1.3;
+}
+
+.type-card-title-xl{
+  font-size:24px;
+  font-weight:700;
+  line-height:1.3;
+}
+
+.type-lead{
+  font-size:19px;
+  font-weight:400;
+  line-height:1.6;
+}
+
+.type-body-lg{
+  font-size:17px;
+  font-weight:400;
+  line-height:1.7;
+}
+
+.type-body-lg-tight{
+  font-size:17px;
+  font-weight:400;
+  line-height:1.65;
+}
+
+.type-body{
+  font-size:16.5px;
+  font-weight:400;
+  line-height:1.75;
+}
+
+.type-body-sm{
+  font-size:15.5px;
+  font-weight:400;
+  line-height:1.65;
+}
+
+.type-body-xs{
+  font-size:15px;
+  font-weight:400;
+  line-height:1.6;
+}
+
+.type-body-compact{
+  font-size:16px;
+  font-weight:400;
+  line-height:1.75;
+}
+
+.type-body-compact-soft{
+  font-size:16px;
+  font-weight:400;
+  line-height:1.65;
+}
+
+.type-caption{
+  font-size:14.5px;
+  font-weight:400;
+  line-height:1.7;
+}
+
+.type-caption-sm{
+  font-size:13.5px;
+  font-weight:400;
+  line-height:1.5;
+}
+
+.type-note{
+  font-size:14px;
+  font-weight:400;
+  line-height:1.6;
+}
+
+.type-label{
+  font-size:13.5px;
+  font-weight:600;
+  line-height:1.4;
+}
+
+.type-input{
+  font-size:15px;
+  font-weight:400;
+  line-height:1.5;
+}
+
+.type-stat{
+  font-size:52px;
+  font-weight:800;
+  line-height:1;
+}
+
+.type-stat-label{
+  font-size:15px;
+  font-weight:400;
+  line-height:1.4;
+}
+
+.type-metric{
+  font-size:16.5px;
+  font-weight:500;
+  line-height:1.4;
+}
+
+.type-contact-value{
+  font-size:16px;
+  font-weight:600;
+  line-height:1.4;
+}
+
+.type-footer-heading{
+  font-size:14px;
+  font-weight:700;
+  line-height:1.4;
+}
+
+.type-badge-number,
+.jm-about-badge-num{
+  font-size:28px;
+  font-weight:800;
+  line-height:1;
+}
+
+.type-badge-label,
+.jm-about-badge-label{
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1.3;
+}
+
+@media (max-width:640px){
+  .type-badge-number,
+  .jm-about-badge-num{
+    font-size:24px;
+  }
+}
