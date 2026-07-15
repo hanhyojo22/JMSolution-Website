@@ -63,7 +63,7 @@ export default {
       });
     }
 
-    const { name, phone, email, service, message, consent, turnstileToken } = body;
+    const { name, phone, email, service, services, message, consent, turnstileToken } = body;
 
     if (!name || !email || !message || !consent) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
@@ -98,7 +98,40 @@ export default {
       });
     }
 
-    const templateParams = { name, phone, email, service, message };
+    const normalizedPhone = (phone || '').trim() || 'Not provided';
+    const normalizedService = (service || services || '').trim() || 'Not specified';
+    const normalizedMessage = (message || '').trim();
+
+    const notificationTemplateParams = {
+      name,
+      phone: normalizedPhone,
+      email,
+      service: normalizedService,
+      services: normalizedService,
+      message:
+        'Name: ' + name + '\n' +
+        'Phone: ' + normalizedPhone + '\n' +
+        'Email: ' + email + '\n' +
+        'Service: ' + normalizedService + '\n\n' +
+        'Message:\n' + normalizedMessage,
+      raw_message: normalizedMessage,
+      email_content:
+        'Name: ' + name + '\n' +
+        'Phone: ' + normalizedPhone + '\n' +
+        'Email: ' + email + '\n' +
+        'Service: ' + normalizedService + '\n\n' +
+        'Message:\n' + normalizedMessage,
+    };
+
+    const autoReplyTemplateParams = {
+      name,
+      phone: normalizedPhone,
+      email,
+      service: normalizedService,
+      services: normalizedService,
+      message: normalizedMessage,
+      raw_message: normalizedMessage,
+    };
 
     const emailRes = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
@@ -108,7 +141,7 @@ export default {
         template_id: EMAILJS_CONTACT_TEMPLATE_ID,
         user_id: EMAILJS_PUBLIC_KEY,
         accessToken: env.EMAILJS_PRIVATE_KEY,
-        template_params: templateParams,
+        template_params: notificationTemplateParams,
       }),
     });
 
@@ -131,7 +164,7 @@ export default {
         template_id: EMAILJS_AUTOREPLY_TEMPLATE_ID,
         user_id: EMAILJS_PUBLIC_KEY,
         accessToken: env.EMAILJS_PRIVATE_KEY,
-        template_params: templateParams,
+        template_params: autoReplyTemplateParams,
       }),
     });
 
