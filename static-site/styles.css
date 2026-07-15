@@ -265,14 +265,16 @@ pointer-events:none;}
 .jm-about-note.dark{background:linear-gradient(145deg,#0B1730,#14316D);border-color:rgba(91,156,255,.22);}
 .jm-about-note h3{margin:0 0 12px;}
 .jm-about-note p{margin:0;}
-/* Case-study project spec bar: one unified card with label/value pairs,
-   replacing a row of separately-shadowed pills. Uses the same mono
-   "technical readout" label style as the homepage services grid, since
-   this is literally itemized project data (client, category, location). */
-.jm-meta-bar{display:flex;flex-wrap:wrap;gap:26px 40px;max-width:1000px;margin:0 auto;background:#FFFFFF;border:1px solid #E3E8F2;border-radius:18px;box-shadow:0 12px 32px rgba(16,24,40,.06);padding:28px 32px;text-align:left;}
-.jm-meta-item{flex:1 1 180px;}
-.jm-meta-label{font-family:var(--jm-font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8590A8;margin:0 0 6px;}
-.jm-meta-value{font-size:15px;font-weight:600;color:#0B1730;line-height:1.4;}
+/* Case-study project facts: each one (Client, Category, Location, Scope)
+   is its own bordered card with an icon, echoing the icon-square + mono
+   label language from the homepage services grid so this reads as the
+   same "spec sheet" system rather than a third, unrelated pattern. */
+.jm-fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1000px;margin:0 auto;text-align:left;}
+.jm-fact-card{display:flex;align-items:flex-start;gap:14px;background:#FFFFFF;border:1px solid #E3E8F2;border-radius:16px;padding:20px;box-shadow:0 10px 26px rgba(16,24,40,.05);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.jm-fact-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(16,24,40,.1);border-color:#2F6FED;}
+.jm-fact-icon{width:40px;height:40px;border-radius:10px;background:#0B1730;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.jm-fact-label{font-family:var(--jm-font-mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8590A8;margin:0 0 4px;}
+.jm-fact-value{font-size:15px;font-weight:700;color:#0B1730;line-height:1.35;}
 .jm-about-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:28px;align-items:start;}
 .jm-about-stack{display:grid;gap:18px;}
 .jm-about-panel{border-radius:26px;padding:28px;background:#FFFFFF;border:1px solid #E3E8F2;box-shadow:0 18px 40px rgba(16,24,40,.07);}
