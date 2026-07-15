@@ -167,6 +167,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const carousel = document.querySelector('[data-proj-carousel]');
   const track = carousel ? carousel.querySelector('[data-proj-track]') : null;
   const dotsWrap = document.querySelector('[data-proj-dots]');
+  const prevBtn = carousel ? carousel.querySelector('[data-proj-prev]') : null;
+  const nextBtn = carousel ? carousel.querySelector('[data-proj-next]') : null;
   const cards = track ? Array.from(track.querySelectorAll('.jm-proj-card')) : [];
   if (!carousel || !track || !dotsWrap || !cards.length) return;
 
@@ -204,10 +206,13 @@ document.addEventListener('DOMContentLoaded', function () {
       dot.classList.toggle('is-active', active);
       dot.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+    if (prevBtn) prevBtn.disabled = currentPage === 0;
+    if (nextBtn) nextBtn.disabled = currentPage === pageCount - 1;
   }
 
   function renderDots() {
     dotsWrap.innerHTML = '';
+    carousel.classList.toggle('has-nav', pageCount > 1);
     if (pageCount <= 1) { dotsWrap.style.display = 'none'; return; }
     dotsWrap.style.display = 'flex';
     for (let i = 0; i < pageCount; i++) {
@@ -228,7 +233,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function layout() {
-    const newCardsPerView = getCardsPerView();
+    // Cap at cards.length so a short list (e.g. 2 real case studies) fills
+    // the row evenly instead of being squeezed into empty desktop slots.
+    const newCardsPerView = Math.min(getCardsPerView(), cards.length);
     const newPageCount = Math.ceil(cards.length / newCardsPerView);
     const rebuildDots = newCardsPerView !== cardsPerView;
 
@@ -271,6 +278,9 @@ document.addEventListener('DOMContentLoaded', function () {
       goToPage(currentPage);
     }
   }
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { goToPage(currentPage - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { goToPage(currentPage + 1); });
 
   track.addEventListener('touchstart', function (e) { dragStart(e.touches[0].clientX); }, { passive: true });
   track.addEventListener('touchmove', function (e) { dragMove(e.touches[0].clientX); }, { passive: true });
@@ -481,6 +491,7 @@ function handleContactSubmit(e) {
       name: form.name.value,
       phone: form.phone.value,
       email: form.email.value,
+      service: form.service.value,
       message: form.message.value,
       consent: form.consent.checked,
       turnstileToken: turnstileToken ? turnstileToken.value : ''

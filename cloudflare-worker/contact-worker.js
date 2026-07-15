@@ -63,7 +63,7 @@ export default {
       });
     }
 
-    const { name, phone, email, message, consent, turnstileToken } = body;
+    const { name, phone, email, service, message, consent, turnstileToken } = body;
 
     if (!name || !email || !message || !consent) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
@@ -98,7 +98,7 @@ export default {
       });
     }
 
-    const templateParams = { name, phone, email, message };
+    const templateParams = { name, phone, email, service, message };
 
     const emailRes = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
