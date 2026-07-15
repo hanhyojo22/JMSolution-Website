@@ -101,6 +101,12 @@ export default {
     const normalizedPhone = (phone || '').trim() || 'Not provided';
     const normalizedService = (service || services || '').trim() || 'Not specified';
     const normalizedMessage = (message || '').trim();
+    const formattedLeadMessage =
+      'Name: ' + name + '\n' +
+      'Phone: ' + normalizedPhone + '\n' +
+      'Email: ' + email + '\n' +
+      'Service: ' + normalizedService + '\n\n' +
+      'Message:\n' + normalizedMessage;
 
     const notificationTemplateParams = {
       name,
@@ -108,19 +114,11 @@ export default {
       email,
       service: normalizedService,
       services: normalizedService,
-      message:
-        'Name: ' + name + '\n' +
-        'Phone: ' + normalizedPhone + '\n' +
-        'Email: ' + email + '\n' +
-        'Service: ' + normalizedService + '\n\n' +
-        'Message:\n' + normalizedMessage,
-      raw_message: normalizedMessage,
-      email_content:
-        'Name: ' + name + '\n' +
-        'Phone: ' + normalizedPhone + '\n' +
-        'Email: ' + email + '\n' +
-        'Service: ' + normalizedService + '\n\n' +
-        'Message:\n' + normalizedMessage,
+      message: formattedLeadMessage,
+      raw_message: formattedLeadMessage,
+      email_content: formattedLeadMessage,
+      details: formattedLeadMessage,
+      user_message: normalizedMessage,
     };
 
     const autoReplyTemplateParams = {
@@ -129,8 +127,11 @@ export default {
       email,
       service: normalizedService,
       services: normalizedService,
-      message: normalizedMessage,
-      raw_message: normalizedMessage,
+      message: formattedLeadMessage,
+      raw_message: formattedLeadMessage,
+      email_content: formattedLeadMessage,
+      details: formattedLeadMessage,
+      user_message: normalizedMessage,
     };
 
     const emailRes = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
