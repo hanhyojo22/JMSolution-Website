@@ -34,6 +34,14 @@ function corsHeaders(origin) {
   };
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Strips CR/LF so a field can't inject fake extra "lines" into the
+// plain-text email body built from these values.
+function stripNewlines(value) {
+  return (value || '').replace(/[\r\n]+/g, ' ').trim();
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -72,6 +80,13 @@ export default {
       });
     }
 
+    if (!EMAIL_RE.test(email)) {
+      return new Response(JSON.stringify({ error: 'Invalid email address' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders(origin) },
+      });
+    }
+
     if (!turnstileToken) {
       return new Response(JSON.stringify({ error: 'Missing Turnstile token' }), {
         status: 400,
@@ -98,18 +113,21 @@ export default {
       });
     }
 
-    const normalizedPhone = (phone || '').trim() || 'Not provided';
-    const normalizedService = (service || services || '').trim() || 'Not specified';
+    // name/phone/service feed into a plain-text email body, so strip
+    // newlines to stop them injecting fake extra "fields" into it.
+    const safeName = stripNewlines(name);
+    const normalizedPhone = stripNewlines(phone) || 'Not provided';
+    const normalizedService = stripNewlines(service || services) || 'Not specified';
     const normalizedMessage = (message || '').trim();
     const formattedLeadMessage =
-      'Name: ' + name + '\n' +
+      'Name: ' + safeName + '\n' +
       'Phone: ' + normalizedPhone + '\n' +
       'Email: ' + email + '\n' +
       'Service: ' + normalizedService + '\n\n' +
       'Message:\n' + normalizedMessage;
 
     const notificationTemplateParams = {
-      name,
+      name: safeName,
       phone: normalizedPhone,
       email,
       service: normalizedService,
@@ -121,17 +139,24 @@ export default {
       user_message: normalizedMessage,
     };
 
+    // The auto-reply goes to whatever address the submitter typed in, which
+    // isn't verified to belong to them. Deliberately do NOT echo their
+    // free-text message back here — only a fixed, generic body — so this
+    // endpoint can't be used to relay attacker-chosen content to a
+    // third-party inbox under our sending reputation.
+    const autoReplyFixedMessage =
+      "Thanks for reaching out to JM Solution IT Services. We've received your message and will get back to you within one business day.";
     const autoReplyTemplateParams = {
-      name,
+      name: safeName,
       phone: normalizedPhone,
       email,
       service: normalizedService,
       services: normalizedService,
-      message: formattedLeadMessage,
-      raw_message: formattedLeadMessage,
-      email_content: formattedLeadMessage,
-      details: formattedLeadMessage,
-      user_message: normalizedMessage,
+      message: autoReplyFixedMessage,
+      raw_message: autoReplyFixedMessage,
+      email_content: autoReplyFixedMessage,
+      details: autoReplyFixedMessage,
+      user_message: autoReplyFixedMessage,
     };
 
     const emailRes = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
