@@ -395,7 +395,8 @@ pointer-events:none;}
   .jm-hero-footer-inner{grid-template-columns:1fr;justify-items:center;gap:12px;}
   .jm-hero-carousel-chip{padding:8px 12px;}
   .jm-about-badge{position:static;margin-top:16px;bottom:auto;left:auto;width:fit-content;max-width:100%;}
-  .jm-btn-primary,.jm-btn-secondary,.jm-btn-ghost,.jm-btn-white{width:100%;max-width:320px;text-align:center;box-sizing:border-box;}
+  .jm-btn-primary,.jm-btn-secondary,.jm-btn-ghost,.jm-btn-white{width:100%;max-width:320px;text-align:center;box-sizing:border-box;box-shadow:none;}
+  .jm-btn-primary:hover,.jm-btn-white:hover{box-shadow:none;}
 }
 
 @media (max-width:480px){
