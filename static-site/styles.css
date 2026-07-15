@@ -27,14 +27,12 @@ a.jm-topbar-item:hover{color:#FFFFFF !important;}
   .jm-topbar-social{width:auto;justify-content:flex-end;gap:7px;}
 }
 @media (max-width:560px){
-  .jm-topbar-inner{padding:6px 12px;justify-content:space-between;gap:8px;flex-wrap:nowrap;}
+  .jm-topbar-inner{padding:6px 12px;justify-content:flex-start;gap:8px;flex-wrap:nowrap;}
   .jm-topbar-left{flex:1 1 auto;flex-direction:row;align-items:center;justify-content:flex-start;gap:8px;min-width:0;flex-wrap:nowrap;}
   .jm-topbar-item{width:auto;max-width:none;min-width:0;font-size:11px;gap:4px;}
   .jm-topbar-item svg{flex-shrink:0;}
   .jm-topbar-email{display:flex;min-width:0;overflow:hidden;text-overflow:ellipsis;}
-  .jm-topbar-social{width:auto;justify-content:flex-end;gap:6px;}
-  .jm-topbar-social a{width:24px;height:24px;}
-  .jm-topbar-social-label{display:none;}
+  .jm-topbar-social{display:none;}
 }
 @media (max-width:420px){
   .jm-topbar-inner{padding:6px 10px;gap:6px;}
