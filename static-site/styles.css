@@ -287,6 +287,21 @@ pointer-events:none;}
 .jm-case-card-meta-item{padding:12px 14px;border-radius:16px;background:#F7FAFF;border:1px solid #E6EDF7;box-shadow:0 10px 24px rgba(16,24,40,.04);}
 .jm-case-card-meta-label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#6C7A96;margin-bottom:6px;}
 .jm-case-card-meta-value{display:block;font-size:13px;line-height:1.45;color:#0B1730;font-weight:700;}
+
+/* About page: company timeline */
+.jm-timeline{position:relative;display:flex;flex-direction:column;gap:32px;}
+.jm-timeline::before{content:'';position:absolute;left:23px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,#2F6FED,#DCE6FB);}
+.jm-timeline-item{display:flex;gap:24px;position:relative;}
+.jm-timeline-marker{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid #2F6FED;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 4px 14px rgba(16,24,40,.08);}
+.jm-timeline-dot{width:12px;height:12px;border-radius:50%;background:#2F6FED;}
+.jm-timeline-content{background:#fff;border:1px solid #E3E8F2;border-radius:16px;padding:22px 26px;flex:1;box-shadow:0 10px 24px rgba(16,24,40,.05);}
+.jm-timeline-tag{font-family:var(--jm-font-mono);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2F6FED;margin:0 0 6px;}
+
+/* About page: core values */
+.jm-value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.jm-value-card{background:#FFFFFF;border:1px solid #E3E8F2;border-radius:18px;padding:26px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.jm-value-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(16,24,40,.08);border-color:#CADAF8;}
+.jm-value-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#EAF1FE 0%,#DCE9FF 100%);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
 @media (max-width:900px){
   .jm-fact-grid{grid-template-columns:minmax(0,1fr);}
 }
