@@ -1,0 +1,12 @@
+# Preserve SEO from the old WordPress site's indexed URLs.
+# Old WordPress permalink -> matching new static page, 301 (permanent).
+/about-us/              /about.html               301
+/about/                 /about.html                301
+/contact-2/             /contact.html              301
+/contact/               /contact.html              301
+/web-development/       /web-development.html      301
+/server-solutions/      /server-solutions.html     301
+/cctv/                  /cctv.html                 301
+/structured-cabling/    /structured-cabling.html   301
+/telco/                 /telco.html                301
+/services/              /                          301
