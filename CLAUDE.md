@@ -60,6 +60,17 @@ Each of the 8 pages has a full, unique SEO block in `<head>` (not just a shared 
 
 Decorative images (the inline `data:image/svg+xml` gradient/icon placeholders used throughout — e.g. the Services grid and Recent Projects cards) use `alt=""` on purpose: they're pure decoration next to a heading/label that already states the real content, so screen readers should skip them rather than announce a fake photo description. Only give an image a real descriptive `alt` when it's actual photography/content the alt text would meaningfully describe (see the hero slides and About page photos for examples).
 
+## Custom subagents
+
+This repo (and the user account) registers four custom subagents in `.claude/agents/`: `software-architect`, `code-writer`, `code-reviewer`, `test-writer`. Prefer delegating to them over doing all the work inline when a task is non-trivial:
+
+- **`software-architect`** (read-only) — invoke first for any non-trivial feature/fix to get a concrete plan (files touched, ordered steps, tradeoffs, risks) before writing code. Skip it for genuinely small, obvious changes (e.g. fixing a typo, updating one contact detail).
+- **`code-writer`** — invoke to implement a plan (from `software-architect` or a clear direct request). Has full read/write/edit/bash access.
+- **`code-reviewer`** (read-only) — invoke after a non-trivial change to get an independent pass for correctness/security/quality issues before considering the work done.
+- **`test-writer`** — this project currently has **no test suite and no build step** (see "Running / previewing" above), so this agent has little to do here today. Only invoke it if the project later gains an automated test setup (e.g. Playwright checks committed to the repo); until then, verification means visually checking the page in a browser, not writing test files.
+
+Given this is a small, template-free static site, most single-page tweaks (copy edits, one inline style, an `alt` text fix) don't need the full architect → writer → reviewer pipeline — use judgment and reserve it for changes that touch multiple pages (per the "no templating" architecture note above), restructure markup, or add new behavior to `script.js`.
+
 ## Conventions to follow when editing
 
 - Keep new pages consistent with the existing structure: copy the top bar/header/footer block verbatim from an existing page rather than inventing new markup for it.
