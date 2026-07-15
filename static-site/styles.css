@@ -473,6 +473,7 @@ pointer-events:none;}
   .jm-tb-badge-line1{font-size:24px;}
   .jm-tb-fb-cta{flex-direction:column;text-align:center;}
   .jm-tb-fb-cta-copy{flex:1 1 auto;}
+  .jm-tb-fb-cta-btn{white-space:normal;max-width:100%;box-sizing:border-box;}
 }
 
 @media (prefers-reduced-motion: reduce){
