@@ -265,9 +265,14 @@ pointer-events:none;}
 .jm-about-note.dark{background:linear-gradient(145deg,#0B1730,#14316D);border-color:rgba(91,156,255,.22);}
 .jm-about-note h3{margin:0 0 12px;}
 .jm-about-note p{margin:0;}
-.jm-about-pill-row{display:flex;flex-wrap:wrap;gap:12px;}
-.jm-about-pill{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:100px;background:#FFFFFF;border:1px solid #E3E8F2;box-shadow:0 10px 24px rgba(16,24,40,.06);}
-.jm-about-pill-dot{width:10px;height:10px;border-radius:50%;background:#2F6FED;flex-shrink:0;box-shadow:0 0 0 6px rgba(47,111,237,.12);}
+/* Case-study project spec bar: one unified card with label/value pairs,
+   replacing a row of separately-shadowed pills. Uses the same mono
+   "technical readout" label style as the homepage services grid, since
+   this is literally itemized project data (client, category, location). */
+.jm-meta-bar{display:flex;flex-wrap:wrap;gap:26px 40px;max-width:1000px;margin:0 auto;background:#FFFFFF;border:1px solid #E3E8F2;border-radius:18px;box-shadow:0 12px 32px rgba(16,24,40,.06);padding:28px 32px;text-align:left;}
+.jm-meta-item{flex:1 1 180px;}
+.jm-meta-label{font-family:var(--jm-font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8590A8;margin:0 0 6px;}
+.jm-meta-value{font-size:15px;font-weight:600;color:#0B1730;line-height:1.4;}
 .jm-about-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:28px;align-items:start;}
 .jm-about-stack{display:grid;gap:18px;}
 .jm-about-panel{border-radius:26px;padding:28px;background:#FFFFFF;border:1px solid #E3E8F2;box-shadow:0 18px 40px rgba(16,24,40,.07);}
