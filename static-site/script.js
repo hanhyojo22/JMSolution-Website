@@ -56,6 +56,7 @@ function toggleNav() {
   const btn = document.querySelector('.jm-hamburger-btn');
   if (!panel || !btn) return;
   const isOpen = panel.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   const ham = btn.querySelector('.icon-hamburger');
   const close = btn.querySelector('.icon-close');
   if (ham) ham.style.display = isOpen ? 'none' : '';
@@ -66,27 +67,45 @@ function toggleNav() {
 // but this keeps state clean for same-page anchors).
 document.addEventListener('DOMContentLoaded', function () {
   const panel = document.getElementById('mobilePanel');
+  const btn = document.querySelector('.jm-hamburger-btn');
   if (panel) {
     panel.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
         panel.classList.remove('open');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
       });
     });
   }
 });
 
-// Services hover dropdown
+// Services dropdown
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.jm-svc-dd').forEach(function (dd) {
+    const trigger = dd.querySelector('.jm-svc-trigger');
     let closeTimer;
+
+    function setOpen(open) {
+      dd.classList.toggle('is-open', open);
+      if (trigger) trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
     dd.addEventListener('mouseenter', function () {
       clearTimeout(closeTimer);
-      dd.classList.add('is-open');
+      setOpen(true);
     });
     dd.addEventListener('mouseleave', function () {
       closeTimer = setTimeout(function () {
-        dd.classList.remove('is-open');
+        setOpen(false);
       }, 150);
+    });
+    if (trigger) {
+      trigger.addEventListener('click', function () {
+        clearTimeout(closeTimer);
+        setOpen(!dd.classList.contains('is-open'));
+      });
+    }
+    document.addEventListener('click', function (e) {
+      if (!dd.contains(e.target)) setOpen(false);
     });
   });
 });
@@ -116,8 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let current = 0;
-  let timer = null;
-
   function showSlide(index) {
     current = (index + slides.length) % slides.length;
     slides.forEach(function (slide, slideIndex) {
@@ -130,35 +147,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function stopAuto() {
-    if (timer) {
-      window.clearInterval(timer);
-      timer = null;
-    }
-  }
-
-  function startAuto() {
-    if (reduced) return;
-    stopAuto();
-    timer = window.setInterval(function () {
-      showSlide(current + 1);
-    }, 4800);
-  }
-
   dots.forEach(function (dot) {
     dot.addEventListener('click', function () {
       showSlide(parseInt(dot.getAttribute('data-slide-to'), 10) || 0);
-      startAuto();
     });
   });
 
-  carousel.addEventListener('mouseenter', stopAuto);
-  carousel.addEventListener('mouseleave', startAuto);
-  carousel.addEventListener('focusin', stopAuto);
-  carousel.addEventListener('focusout', startAuto);
-
   showSlide(0);
-  startAuto();
+  if (!reduced) {
+    window.addEventListener('keydown', function (e) {
+      if (!carousel.contains(document.activeElement)) return;
+      if (e.key === 'ArrowRight') showSlide(current + 1);
+      if (e.key === 'ArrowLeft') showSlide(current - 1);
+    });
+  }
 });
 
 // Recent Projects carousel (index.html only) — swipe/drag through project
