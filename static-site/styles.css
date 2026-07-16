@@ -48,7 +48,7 @@ a.jm-topbar-item:hover{color:#FFFFFF !important;}
 .jm-header{position:sticky;top:var(--jm-topbar-h,44px);z-index:50;padding:0;background:transparent;border-bottom:1px solid transparent;transition:top .3s ease,border-color .3s ease;}
 .jm-header.jm-scrolled{top:calc(var(--jm-topbar-h,44px) + 16px);background:transparent;border-bottom-color:transparent;}
 .jm-header-inner{max-width:1240px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;min-height:60px;gap:16px;flex-wrap:wrap;background:#F4F7FD;border:1px solid transparent;border-radius:16px;box-shadow:none;transition:background .3s ease,border-color .3s ease,border-radius .3s ease,box-shadow .3s ease,padding .3s ease;}
-.jm-header-inner > a:first-child img{width:164px !important;height:auto !important;}
+.jm-header-inner > a:first-child img{width:190px !important;height:auto !important;}
 .jm-header.jm-scrolled .jm-header-inner{background:#F4F7FD;border:1px solid #E3E8F2;border-radius:16px;box-shadow:0 12px 32px rgba(11,23,48,.1);padding:14px 24px;}
 
 /* Home page only: header sits transparent over the hero photo until scrolled,
@@ -409,7 +409,7 @@ pointer-events:none;}
   .jm-header-inner{padding:12px 16px;min-height:56px;gap:12px;}
   .jm-header.jm-scrolled .jm-header-inner{padding:12px 18px;}
   .jm-header-inner > a:first-child{flex:1 1 auto;min-width:0;}
-  .jm-header-inner > a:first-child img{width:142px !important;height:auto !important;}
+  .jm-header-inner > a:first-child img{width:164px !important;height:auto !important;}
   .jm-mobile-panel{padding:8px 16px 20px !important;}
   .jm-page-hero > div{padding:0 18px !important;}
 }
@@ -420,7 +420,7 @@ pointer-events:none;}
   .jm-topbar-item{font-size:12px;}
   .jm-header-inner{padding:10px 14px;min-height:52px;}
   .jm-header.jm-scrolled .jm-header-inner{padding:10px 16px;}
-  .jm-header-inner > a:first-child img{width:126px !important;}
+  .jm-header-inner > a:first-child img{width:148px !important;}
   .jm-mobile-panel{padding:8px 14px 18px !important;}
   .jm-hero,.jm-page-hero{margin-top:calc(var(--jm-header-h,82px) * -1);padding-top:var(--jm-header-h,82px);}
   .jm-hero{min-height:clamp(560px,88vh,660px);}
