@@ -61,6 +61,18 @@ export default {
       });
     }
 
+    // Throttle before doing any real work (body parsing, Turnstile
+    // verification, EmailJS calls) so repeated bot submissions from the
+    // same IP get cut off cheaply.
+    const clientIp = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const { success: withinRateLimit } = await env.CONTACT_FORM_RATE_LIMITER.limit({ key: clientIp });
+    if (!withinRateLimit) {
+      return new Response(JSON.stringify({ error: 'Too many requests, please try again later' }), {
+        status: 429,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders(origin) },
+      });
+    }
+
     let body;
     try {
       body = await request.json();
