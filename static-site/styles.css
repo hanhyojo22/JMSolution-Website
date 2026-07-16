@@ -518,3 +518,14 @@ pointer-events:none;}
   .jm-tb-video-poster{transition-duration:.01s !important;}
 }
 
+/* FAQ accordion */
+.jm-faq{background:#fff;border:1px solid #E3E8F2;border-radius:14px;padding:6px 24px;}
+.jm-faq-summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;}
+.jm-faq-summary::-webkit-details-marker{display:none;}
+.jm-faq-chevron{flex-shrink:0;transition:transform .2s ease;}
+.jm-faq[open] .jm-faq-chevron{transform:rotate(180deg);}
+.jm-faq-body{margin:0 0 20px;}
+@media (prefers-reduced-motion: reduce){
+  .jm-faq-chevron{transition:none;}
+}
+
