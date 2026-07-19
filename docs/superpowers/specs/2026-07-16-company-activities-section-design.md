@@ -20,7 +20,7 @@ Structure mirrors the existing centered eyebrow + heading pattern used by
 Testimonials/Recent Projects, followed by a single horizontal feature
 card (not a carousel — only one activity page exists today):
 
-- Eyebrow: "Life at JM Solution"
+- Eyebrow: "Life at JMSolutions"
 - Heading: "Company Activities"
 - Card links to `team-building`, reuses `assets/team-building/group-banner-photo.webp`
   (same image already used as that page's OG image) with its existing

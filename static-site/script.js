@@ -1,4 +1,4 @@
-// JM Solution IT Services — shared behavior
+// JMSolutions IT Services — shared behavior
 
 // Pin the header directly below the (also sticky) top bar, measuring its
 // real height so it stays correct if the top bar wraps to two lines.

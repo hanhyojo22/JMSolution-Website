@@ -157,7 +157,7 @@ export default {
     // endpoint can't be used to relay attacker-chosen content to a
     // third-party inbox under our sending reputation.
     const autoReplyFixedMessage =
-      "Thanks for reaching out to JM Solution IT Services. We've received your message and will get back to you within one business day.";
+      "Thanks for reaching out to JMSolutions IT Services. We've received your message and will get back to you within one business day.";
     const autoReplyTemplateParams = {
       name: safeName,
       phone: normalizedPhone,

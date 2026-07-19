@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static marketing website for JM Solution IT Services (Cebu City IT provider). Plain HTML/CSS/JS — no framework, no build step, no package manager, no test suite. All site files live under `static-site/`.
+A static marketing website for JMSolutions IT Services (Cebu City IT provider). Plain HTML/CSS/JS — no framework, no build step, no package manager, no test suite. All site files live under `static-site/`.
 
 ## Running / previewing
 
